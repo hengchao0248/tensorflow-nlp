@@ -32,27 +32,39 @@
 
 	* Chatbot（对话机器人）
 
-		* [Spoken Language Understanding（对话理解）](https://github.com/zhedongzheng/finch#spoken-language-understanding)
+		* Single-turn (单轮对话)
+
+			* [Spoken Language Understanding（对话理解）](https://github.com/zhedongzheng/finch#spoken-language-understanding)
+
+				* ATIS
+
+					* Bi-GRU
+
+					* Bi-GRU + CRF
+
+					* Transformer
+
+					* Bi-GRU + Transformer
+
+					* ELMO + Bi-GRU
+
+			* [Generative Dialog（生成式对话）](https://github.com/zhedongzheng/finch#generative-dialog)
+
+				* RNN Seq2Seq + Attention
+
+		* Multi-turn (多轮对话)
 		
-			* ATIS
-		
-				* Bi-GRU
-				
-				* Bi-GRU + CRF
-		
-				* Transformer
-				
-				* Bi-GRU + Transformer
-		
-				* ELMO + Bi-GRU
-		
-		* [Generative Dialog（生成式对话）](https://github.com/zhedongzheng/finch#generative-dialog)
+			* [Multi-turn Dialogue Rewriting（多轮对话改写）](https://github.com/zhedongzheng/finch#multi-turn-dialogue-rewriting)
+
+				* RNN Seq2Seq + Attention + Dynamic Memory
 
 	* [Semantic Parsing（语义解析）](https://github.com/zhedongzheng/finch#semantic-parsing)
 	
 		* Semantic Parsing for Task Oriented Dialog
 	
 			* RNN Seq2Seq + Attention
+			
+			* Transformer
 
 	* [Question Answering（问题回答）](https://github.com/zhedongzheng/finch#question-answering)
 	
@@ -70,7 +82,9 @@
 
 * Knowledge Graph（知识图谱）
 	
-	* [Knowledge Graph Completion（知识图谱补全）](https://github.com/zhedongzheng/finch#knowledge-graph-completion)
+	* [Knowledge Graph Construction（知识图谱构建）](https://github.com/zhedongzheng/finch#knowledge-graph-construction)
+	
+	* [Knowledge Graph Inference（知识图谱推理）](https://github.com/zhedongzheng/finch#knowledge-graph-inference)
 	
 		* WN18
 	
@@ -79,14 +93,6 @@
 			* TuckER
 		
 			* ComplEx
-	
-	* [Knowledge Graph Construction（知识图谱构建）](https://github.com/zhedongzheng/finch#knowledge-graph-construction)
-	
-	* [Knowledge Graph Retrieval（知识图谱检索）](https://github.com/zhedongzheng/finch#knowledge-graph-retrieval)
-	
-		* SPARQL
-		
-		* Neo4j + Cypher
 
 * [Recommender System（推荐系统）](https://github.com/zhedongzheng/finch#recommender-system)
 
@@ -178,6 +184,10 @@
 			
 			* [\<Notebook> Sliced LSTM + Back-Translation + Char Embedding -> 92.3 % Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_classification/imdb/main/sliced_rnn_bt_char.ipynb)
 
+			* [\<Notebook> Sliced LSTM + Back-Translation + Char Embedding + Label Smoothing](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_classification/imdb/main/sliced_rnn_bt_char_label_smooth.ipynb)
+			
+				-> 92.5 % Testing Accuracy
+
 				This result (without transfer learning) is higher than [CoVe](https://arxiv.org/pdf/1708.00107.pdf) (with transfer learning)
 
 ---
@@ -218,7 +228,7 @@
 		
 			* [\<Notebook> DAM -> 85.3% Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_matching/snli/main/dam.ipynb)
 			
-			 The accuracy of this implementation is higher than [UCL MR Group](http://isabelleaugenstein.github.io/papers/JTR_ACL_demo_paper.pdf) (84.6%)
+			 	The accuracy of this implementation is higher than [UCL MR Group](http://isabelleaugenstein.github.io/papers/JTR_ACL_demo_paper.pdf) (84.6%)
 
 	* Model: [Match Pyramid](https://arxiv.org/abs/1602.06359)
 	
@@ -228,7 +238,7 @@
 			
 			* [\<Notebook> Match Pyramid + Multiway Attention -> 87.1% Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_matching/snli/main/pyramid_multi_attn.ipynb)
 
-	 		 The accuracy of this model is 0.3% below ESIM, however the speed is 1x faster than ESIM
+	 		 	The accuracy of this model is 0.3% below ESIM, however the speed is 1x faster than ESIM
 
 	* Model: [ESIM](https://arxiv.org/abs/1609.06038)
 	
@@ -236,7 +246,7 @@
 		
 			* [\<Notebook> ESIM -> 87.4% Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_matching/snli/main/esim.ipynb)
 
-			 The accuracy of this implementation is sligntly higher than [UCL MR Group](http://isabelleaugenstein.github.io/papers/JTR_ACL_demo_paper.pdf) (87.2%)
+			 	The accuracy of this implementation is sligntly higher than [UCL MR Group](http://isabelleaugenstein.github.io/papers/JTR_ACL_demo_paper.pdf) (87.2%)
 
 	* Model: [RE2](https://arxiv.org/abs/1908.00300)
 	
@@ -245,6 +255,8 @@
 			* [\<Notebook> 2-layer RE2 -> 87.7% Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_matching/snli/main/re2_birnn.ipynb)
 
 			* [\<Notebook> 3-layer RE2 -> 88.0% Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_matching/snli/main/re2_3_birnn.ipynb)
+
+			* [\<Notebook> 3-layer RE2 + Label Smoothing -> 88.2% Testing Accuracy](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/text_matching/snli/main/re2_3_birnn_label_smooth.ipynb)
 
 ---
 
@@ -304,13 +316,13 @@
 
 			* [\<Notebook> Bi-GRU](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/spoken_language_understanding/atis/main/bigru.ipynb) 
 			
-			  97.8% Intent F1, 95.5% Slot F1 on Testing Data
+			  97.8% Intent Micro-F1, 95.5% Slot Micro-F1 on Testing Data
 
 		* TensorFlow 1
 
 			* [\<Notebook> Bi-GRU + CRF](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/spoken_language_understanding/atis/main/bigru_crf.ipynb) 
 			
-			  97.2% Intent F1, 95.7% Slot F1 on Testing Data
+			  97.2% Intent Micro-F1, 95.7% Slot Micro-F1 on Testing Data
 	
 	* Model: [Transformer](https://arxiv.org/abs/1706.03762)
 	
@@ -318,15 +330,15 @@
 
 			* [\<Notebook> Transformer](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/spoken_language_understanding/atis/main/transformer.ipynb)
 			
-			  97.5% Intent F1, 94.9% Slot F1 on Testing Data
+			  97.5% Intent Micro-F1, 94.9% Slot Micro-F1 on Testing Data
 		
 			* [\<Notebook> Transformer + ELU activation](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/spoken_language_understanding/atis/main/transformer_elu.ipynb)
 			
-			  97.2% Intent F1, 95.5% Slot F1 on Testing Data
+			  97.2% Intent Micro-F1, 95.5% Slot Micro-F1 on Testing Data
 		
 			* [\<Notebook> Bi-GRU + Transformer](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/spoken_language_understanding/atis/main/bigru_self_attn.ipynb)
 
-			  97.7% Intent F1, 95.8% Slot F1 on Testing Data
+			  97.7% Intent Micro-F1, 95.8% Slot Micro-F1 on Testing Data
 			  
 	* Model: [ELMO Embedding](https://arxiv.org/abs/1802.05365)
 	
@@ -334,42 +346,61 @@
 
 			* [\<Notebook> ELMO (the first LSTM hidden state) + Bi-GRU](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/spoken_language_understanding/atis/main/elmo_o1_bigru.ipynb) 
 			
-			  97.6% Intent F1, 96.2% Slot F1 on Testing Data
+			  97.6% Intent Micro-F1, 96.2% Slot Micro-F1 on Testing Data
 			  
 			* [\<Notebook> ELMO (weighted sum of 3 layers) + Bi-GRU](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/spoken_language_understanding/atis/main/elmo_o3_bigru.ipynb) 
 			
-			  97.6% Intent F1, 96.1% Slot F1 on Testing Data
+			  97.6% Intent Micro-F1, 96.1% Slot Micro-F1 on Testing Data
 
 ---
 
 ## Generative Dialog
 
+```
+└── finch/tensorflow1/free_chat/chinese_gaoq1
+	│
+	├── data
+	│   └── make_data.ipynb           	# step 1. run this to generate vocab {char.txt} and data {reduce.txt & core.txt} 
+	│
+	├── vocab
+	│   └── char.txt                	# list of chars in vocabulary for chinese
+	│   └── cc.zh.300.vec			# fastText pretrained embedding downloaded from external
+	│   └── char.npy			# chinese characters and their embedding values (300 dim)	
+	│	
+	└── main
+		└── lstm_seq2seq_train.ipynb    # step 2. train and evaluate model
+		└── lstm_seq2seq_export.ipynb   # step 3. export trained tf model
+		└── lstm_seq2seq_predict.ipynb  # step 4. end-to-end inference
+		
+```
+
 * Task: Chinese Free Chat
+	* Data
 
-	* Data consists of two parts: 
-	
-		* [小黄鸡语料](https://github.com/candlewill/Dialog_Corpus)
-	
-		* [STC-3](http://coai.cs.tsinghua.edu.cn/hml/challenge/dataset_description/)
+		* [Data provided by GaoQ1](https://github.com/yangjianxin1/GPT2-chitchat#%E9%97%B2%E8%81%8A%E8%AF%AD%E6%96%99%E5%88%86%E4%BA%AB)
 
-	* Model: [RNN Seq2Seq](https://arxiv.org/abs/1409.0473)
+		* [\<Notebook>: Make Data & Vocabulary](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese_gaoq1/data/make_data.ipynb)
+
+	* Model: [RNN Seq2Seq + Attention](https://arxiv.org/abs/1409.0473)
 
 		* TensorFlow 1
 			
-			* [\<Notebook> Training](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese/main/gru_seq2seq.ipynb)
-
-			  GRU + Bahdanau Attention + Beam Search
+			* [\<Notebook> Training](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese_gaoq1/main/lstm_seq2seq_train.ipynb)
 			
-			* [\<Notebook> Demo](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese/main/gru_seq2seq_small_predict.ipynb)
+				LSTM + Attention + Beam Search -> 28.6 Perplexity & 10.5 BLEU-2
 			
-			* [\<Notebook> Serving](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese/main/gru_seq2seq_serving.ipynb)
+			* [\<Notebook> Export](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese_gaoq1/main/lstm_seq2seq_export.ipynb)
+			
+			* [\<Notebook> Inference](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese_gaoq1/main/lstm_seq2seq_predict.ipynb)
+			
+	* [\<Notebook> TF Serving Example](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/free_chat/chinese/main/gru_seq2seq_serving.ipynb)
 
 ---
 
 ## Semantic Parsing
 
 ```
-└── finch/tensorflow2/semantic_parsing/tree_slu
+└── finch/tensorflow1/semantic_parsing/tree_slu
 	│
 	├── data
 	│   └── glove.840B.300d.txt     	# pretrained embedding, download and put here
@@ -382,8 +413,8 @@
 	│   └── target.txt                	# list of words in vocabulary for target (of seq2seq)
 	│	
 	└── main
-		└── gru_seq2seq.ipynb           # step 2. train and evaluate model
-		└── lstm_seq2seq.ipynb          # step 2. train and evaluate model
+		└── lstm_transformer.ipynb           # step 2. train and evaluate model
+		└── lstm_seq2seq_multi_attn.ipynb    # step 2. train and evaluate model
 		
 ```
 
@@ -395,23 +426,31 @@
 	
 		* [\<Text File>: Vocabulary Example](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/semantic_parsing/tree_slu/vocab/target.txt)
 
-	* Model: [RNN Seq2Seq](https://arxiv.org/abs/1409.0473)
-	
+	* Model: [RNN Seq2Seq + Attention](https://arxiv.org/abs/1409.0473)
+
 		* TensorFlow 2
 			
-			* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/semantic_parsing/tree_slu/main/gru_seq2seq.ipynb) GRU + Bahdanau Attention -> 72.9% Exact Match Accuracy on Testing Data
+			* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow2/semantic_parsing/tree_slu/main/lstm_seq2seq_tf_addons.ipynb) LSTM + Attention + Beam Search ->
 			
-			* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/semantic_parsing/tree_slu/main/lstm_seq2seq.ipynb) LSTM + Bahdanau Attention -> 72.2% Exact Match Accuracy on Testing Data
-			
+			  72.4% Exact Match Accuracy on Testing Data
+
 		* TensorFlow 1
 			
-			* [\<Notebook 1>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/semantic_parsing/tree_slu/main/gru_seq2seq_multi_attn_part1.ipynb) [\<Notebook 2>](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/semantic_parsing/tree_slu/main/gru_seq2seq_multi_attn_part2.ipynb) ELMO + GRU + Bahdanau Attention + Luong Attention + Beam Search
+			* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/semantic_parsing/tree_slu/main/lstm_seq2seq_multi_attn.ipynb) ELMO + LSTM + Attention + Beam Search + Label Smoothing ->
 			
-			  -> 74.5% Exact Match Accuracy on Testing Data
+			  74.8% Exact Match Accuracy on Testing Data
+			  
+	* Model: [Transformer](https://arxiv.org/abs/1706.03762)
+	
+		* TensorFlow 1 + [Texar](https://github.com/asyml/texar) 
+			
+			* [\<Notebook>](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/semantic_parsing/tree_slu/main/lstm_transformer.ipynb) ELMO + Transformer + Beam Search + Label Smoothing ->
+			
+			  73.3% Exact Match Accuracy on Testing Data
 
 ---
 
-## Knowledge Graph Completion
+## Knowledge Graph Inference
 
 ```
 └── finch/tensorflow2/knowledge_graph_completion/wn18
@@ -474,17 +513,11 @@
 
 ## Knowledge Graph Construction
 
-* A Minimal Project
+* Data Scraping
 
-	* Step 1. Data Scraping
+	* [Use Scrapy](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/scrapy/car.ipynb)
 
-		* [Use Scrapy](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/scrapy/car.ipynb)
-	
-		* [Downloaded](https://github.com/zhedongzheng/tensorflow-nlp/blob/master/finch/scrapy/car.csv)
-
----
-
-## Knowledge Graph Retrieval
+	* [Downloaded](https://github.com/zhedongzheng/tensorflow-nlp/blob/master/finch/scrapy/car.csv)
 
 * SPARQL
 
@@ -539,13 +572,13 @@
 
 	* Chinese
 
-		* [\<Notebook>: Regex](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/python/regex/zhcn_extract.ipynb)
+		* [\<Notebook>: Regex Rule](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/python/regex/zhcn_extract.ipynb)
 
 * Text Vectorization 
 
 	* Chinese
 
-		* [\<Notebook>: Bert](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/bert_zhcn/feature.ipynb)
+		* [\<Notebook>: BERT](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow2/bert_zhcn/feature.ipynb)
 
 * Word Segmentation
 
@@ -596,3 +629,45 @@
 			* [\<Notebook> Fusion + Regression Loss -> 0.6618 Testing MAE](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/recommender/movielens/main/dnn_mse.ipynb)
 			
 			* [\<Notebook> Fusion + Classification Loss -> 0.6320 Testing MAE](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/recommender/movielens/main/dnn_softmax.ipynb)
+
+---
+
+## Multi-turn Dialogue Rewriting
+
+```
+└── finch/tensorflow1/multi_turn_rewrite/chinese/
+	│
+	├── data
+	│   └── make_data.ipynb         # run this to generate vocab, split train & test data, make pretrained embedding
+	│
+	├── vocab
+	│   └── cc.zh.300.vec		# fastText pretrained embedding downloaded from external
+	│   └── char.npy		# chinese characters and their embedding values (300 dim)	
+	│   └── char.txt		# list of chinese characters used in this project 
+	│	
+	└── main              
+		└── baseline_lstm_train.ipynb
+		└── baseline_lstm_export.ipynb
+		└── baseline_lstm_predict.ipynb
+```
+
+* Task: Chinese Multi-turn Dialogue Rewriting
+
+	* [\<Text File>: Data](https://github.com/chin-gyou/dialogue-utterance-rewriter/blob/master/corpus.txt)
+	
+	* [\<Notebook>: Make Data & Vocabulary & Pretrained Embedding](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/data/make_data.ipynb)
+	
+	* Model: [RNN Seq2Seq + Attention](https://arxiv.org/abs/1409.0473) + [Dynamic Memory](https://arxiv.org/abs/1603.01417)
+	
+		* TensorFlow 1
+		
+			* [\<Notebook> LSTM + Attention + Memory + Beam Search](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_train.ipynb)
+			
+			 	-> BLEU-1: 94.8, &nbsp; BLEU-2: 89.0, &nbsp; BELU-4: 78.3, &nbsp; EM: 57.5
+
+			* [\<Notebook> Export](https://nbviewer.jupyter.org/github/zhedongzheng/finch/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_export.ipynb)
+			
+			* [\<Notebook> Inference](https://nbviewer.jupyter.org/github/zhedongzheng/tensorflow-nlp/blob/master/finch/tensorflow1/multi_turn_rewrite/chinese/main/baseline_lstm_predict.ipynb)
+			
+		
+			
